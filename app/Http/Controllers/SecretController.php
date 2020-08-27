@@ -55,18 +55,13 @@ class SecretController extends Controller
     /**
      * Show the user a secret and destroy it.
      *
-     * @param string $slug
+     * @param Secret $secret
      *
      * @return Renderable
-     *
-     * @throws NotFoundHttpException
      */
-    public function show($slug)
+    public function show(Secret $secret)
     {
-        // Get the secret.
-        $secret = Secret::where(DB::raw('BINARY `slug`'), $slug)->firstOrFail();
-
-        // Delete it.
+        // Delete the secret.
         $secret->delete();
 
         // Show it to the user.
