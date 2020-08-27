@@ -67,4 +67,20 @@ class SecretController extends Controller
         // Show it to the user.
         return view('show', compact('secret'));
     }
+
+    /**
+     * Destroy the secret without showing it.
+     *
+     * @param Secret $secret
+     *
+     * @return Renderable
+     */
+    public function destroy(Secret $secret)
+    {
+        // Delete the secret.
+        $secret->delete();
+
+        // Show it to the user.
+        return view('destroyed');
+    }
 }

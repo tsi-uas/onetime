@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'SecretController@index')->name('home');
 Route::post('/store', 'SecretController@store')->name('store');
 Route::get('/secret/{secret:slug}', 'SecretController@show')->name('show');
+Route::get('/destroy/{secret:slug}', 'SecretController@destroy')->name('destroy');

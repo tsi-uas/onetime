@@ -9,7 +9,7 @@
     <i class="fas fa-copy fa-fw"></i>
     Copy URL to Clipboard
 </button>
-<a class="btn btn-danger" href="{{ route('show', $secret) }}">
+<a class="btn btn-danger" href="{{ route('destroy', $secret) }}">
     <i class="fas fa-exclamation-triangle fa-fw"></i>
     Destroy This Secret
 </a>
