@@ -7,8 +7,6 @@
     <meta name="author" content="">
     <title>One Time Secrets</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/solid.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <main role="main" class="container">
