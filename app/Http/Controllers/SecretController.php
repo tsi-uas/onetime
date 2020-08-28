@@ -7,6 +7,7 @@ use Str;
 use Carbon\Carbon;
 use App\Models\Secret;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Support\Renderable;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -53,7 +54,7 @@ class SecretController extends Controller
     }
 
     /**
-     * Show the user a secret and destroy it.
+     * Show the user the basic secret page.
      *
      * @param Secret $secret
      *
@@ -61,11 +62,26 @@ class SecretController extends Controller
      */
     public function show(Secret $secret)
     {
+        // Show it to the user.
+        return view('show', compact('secret'));
+    }
+
+    /**
+     * Delete the secret and show it to the user for real. This is so things
+     * like Slack's auto URL preview functionality doesn't destroy the secret
+     * befor the user actually clicks the link.
+     *
+     * @param Secret $secret
+     *
+     * @return string
+     */
+    public function load(Secret $secret)
+    {
         // Delete the secret.
         $secret->delete();
 
         // Show it to the user.
-        return view('show', compact('secret'));
+        return view('load', compact('secret'))->render();
     }
 
     /**
