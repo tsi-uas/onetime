@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SecretController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'SecretController@index')->name('home');
-Route::post('/store', 'SecretController@store')->name('store');
-Route::get('/secret/{secret:slug}', 'SecretController@show')->name('show');
-Route::get('/load/{secret:slug}', 'SecretController@load')->name('load');
-Route::get('/destroy/{secret:slug}', 'SecretController@destroy')->name('destroy');
+Route::get('/', [SecretController::class, 'index'])->name('home');
+Route::post('/store', [SecretController::class, 'store'])->name('store');
+Route::get('/secret/{secret:slug}', [SecretController::class, 'show'])->name('show');
+Route::get('/load/{secret:slug}', [SecretController::class, 'load'])->name('load');
+Route::get('/destroy/{secret:slug}', [SecretController::class, 'destroy'])->name('destroy');
