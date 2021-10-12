@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="secret">Here's your Secret:</label>
-    <textarea name="secret" id="secret" rows="5" class="form-control" readonly>{{ decrypt($secret->secret) }}</textarea>
+    <textarea name="secret" id="secret" rows="10" class="form-control" readonly>{{ decrypt($secret->secret) }}</textarea>
 </div>
 <p>This secret has now been destroyed forever.</p>
 <p>
