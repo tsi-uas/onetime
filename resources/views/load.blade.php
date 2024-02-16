@@ -1,8 +1,10 @@
 <div class="form-group">
-    <p>
-        <label for="secret">Here's your Secret:</label>
-        <textarea name="secret" id="secret" rows="10" class="form-control" readonly>{{ decrypt($secret->secret) }}</textarea>
-    </p>
+    @if ($secret->secret)
+        <p>
+            <label for="secret">Here's your Secret:</label>
+            <textarea name="secret" id="secret" rows="10" class="form-control" readonly>{{ decrypt($secret->secret) }}</textarea>
+        </p>
+    @endif
     @if ($secret->file_contents)
         <p>
             This secret includes an attached file. Click the button below to download it.
