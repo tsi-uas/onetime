@@ -24,10 +24,12 @@
 </div>
 <p>This secret has now been destroyed forever.</p>
 <p>
-    <button type="button" class="btn btn-success" id="copy">
-        <i class="fas fa-copy fa-fw"></i>
-        Copy Secret to Clipboard
-    </button>
+    @if ($secret->secret)
+        <button type="button" class="btn btn-success" id="copy">
+            <i class="fas fa-copy fa-fw"></i>
+            Copy Secret to Clipboard
+        </button>
+    @endif
     <a class="btn btn-primary" href="{{ route('home') }}">
         <i class="fas fa-redo fa-fw"></i>
         Share Another Secret
