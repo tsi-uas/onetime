@@ -45,7 +45,8 @@ class SecretController extends Controller
         // Validate.
         $this->validate($request, [
             'secret' => 'nullable|string',
-            'file' => 'nullable|mimes:jpeg,jpg,gif,png,bmp,tif,tiff,doc,docx,xls,xlsx,ppt,pptx,txt,csv,psv,pdf,zip,7z,rar|size:10000'
+            'file'   => 'nullable',
+            'file.*' => 'mimes:jpeg,jpg,gif,png,bmp,tif,tiff,doc,docx,xls,xlsx,ppt,pptx,txt,csv,psv,pdf,zip,7z,rar|max:10000'
         ]);
 
         // Create a new Secret.
