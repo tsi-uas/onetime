@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<form action="{{ route('store') }}" method="post">
+<form action="{{ route('store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <p class="text-muted">
         Enter your secret information below, select an expiration time, and click the button. You will be provided with
@@ -13,6 +13,14 @@
     <div class="form-group">
         <label for="secret">What's your secret?</label>
         <textarea name="secret" id="secret" rows="10" class="form-control" autofocus></textarea>
+    </div>
+    <div class="form-group">
+        <label for="secret">Upload a File?</label>
+        <input name="file" id="file" type="file" class="form-control" />
+        <p class="help-text">
+            Max Size: {{ ini_get('upload_max_filesize') }}<br>
+            Allowed File Types: jpeg, jpg, gif, png, tif, tiff, bmp, doc, docx, xls, xlsx, ppt, pptx, txt, csv, psv, pdf, zip, 7z, rar
+        </p>
     </div>
     <div class="form-group">
         <label for="expires">When should it expire?</label>

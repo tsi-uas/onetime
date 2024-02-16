@@ -42,11 +42,34 @@ class SecretController extends Controller
      */
     public function store(Request $request)
     {
-        // Store the secret.
+        // Validate.
+        $this->validate($request, [
+            'secret' => 'nullable|string',
+            'file' => 'nullable|mimes:jpeg,jpg,gif,png,bmp,tif,tiff,doc,docx,xls,xlsx,ppt,pptx,txt,csv,psv,pdf,zip,7z,rar|size:10000'
+        ]);
+
+        // Create a new Secret.
         $secret = new Secret();
+
+        // Add secret info.
         $secret->slug = Str::random(32);
-        $secret->secret = encrypt($request->secret);
         $secret->expires_at = Carbon::parse($request->expires ?: '+1 hour');
+
+        // Add text secret.
+        if ($request->secret) {
+            $secret->secret = encrypt($request->secret);
+        }
+
+        // Add file data.
+        if (($file = $request->file('file')) && $request->file('file')->isValid()) {
+            $secret->file_name      = $file->getClientOriginalName();
+            $secret->file_size      = $file->getSize();
+            $secret->file_extension = $file->extension();
+            $secret->file_mime      = $file->getClientMimeType();
+            $secret->file_contents  = Crypt::encrypt(file_get_contents($file->path()));
+        }
+
+        // Done.
         $secret->save();
 
         // Show the user the secret URL.
